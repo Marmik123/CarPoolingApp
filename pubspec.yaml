@@ -37,6 +37,10 @@ dependencies:
   firebase_auth: ^0.20.1
   country_picker: ^2.0.1
   pin_code_fields: ^6.0.2
+  agora_rtc_engine: ^1.0.12
+  permission_handler: ^5.0.1
+  native_screenshot: ^0.0.4
+  cloud_firestore: ^0.16.0+1
 
 dev_dependencies:
   flutter_test:

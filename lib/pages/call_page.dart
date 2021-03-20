@@ -1,10 +1,9 @@
-import 'dart:ui';
-
-import 'package:agora_group_calling/widgets/app_bar.dart';
-import 'package:agora_group_calling/widgets/call_function.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:native_screenshot/native_screenshot.dart';
+
+import '../widgets/app_bar.dart';
+import '../widgets/call_function.dart';
 
 class CallPage extends StatefulWidget {
   final String userName;
