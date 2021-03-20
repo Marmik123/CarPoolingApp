@@ -48,6 +48,14 @@ class _ChatScreenState extends State<ChatScreen> {
     await _handleCameraAndMic(Permission.microphone);
     await _handleCameraAndMic(Permission.storage);
     // push video page with given channel name
+    await _firestore
+        .collection('servers')
+        .doc(widget.channelName)
+        .collection('CallNotification')
+        .doc(widget.user["name"])
+        .set({
+      'User': _auth.currentUser.uid,
+    });
     await Navigator.push(
       context,
       MaterialPageRoute(
@@ -81,6 +89,7 @@ class _ChatScreenState extends State<ChatScreen> {
               icon: Icon(Icons.phone),
               onPressed: () {
                 //Implement logout functionality
+                onJoin();
               }),
           IconButton(
               icon: Icon(Icons.close),
@@ -123,6 +132,25 @@ class _ChatScreenState extends State<ChatScreen> {
                       ),
                     );
                   } else {
+                    return Center(
+                      child: CircularProgressIndicator(
+                        backgroundColor: Colors.blueAccent,
+                      ),
+                    );
+                  }
+                }),
+            StreamBuilder<QuerySnapshot>(
+                stream: _firestore
+                    .collection('servers')
+                    .doc(widget.channelName)
+                    .collection('callNotification')
+                    .snapshots(), // ignore: missing_return
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    //widget to notify other user that his connection is on the call
+                    return Container();
+                  } else {
+                    // return nothing
                     return Center(
                       child: CircularProgressIndicator(
                         backgroundColor: Colors.blueAccent,

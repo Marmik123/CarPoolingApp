@@ -1,5 +1,8 @@
-import 'dart:ui';
+import 'package:agora_group_calling/console/user_registration.dart';
+import 'package:agora_group_calling/console/user_registration.dart';
 
+import '../../console/user_registration.dart';
+import '../../utils/User.dart';
 import 'package:car_pooling_app/app_colors/app_colors.dart';
 import 'package:car_pooling_app/controller/sign_up_controller.dart';
 import 'package:flutter/material.dart';
@@ -342,6 +345,21 @@ class SignUp extends StatelessWidget {
                         GestureDetector(
                           onTap: () {
                             Get.back();
+                            UserData user = UserData(
+                                name: signUpCtrl.name.text,
+                                email: signUpCtrl.email.text,
+                                age: signUpCtrl.age.text,
+                                mobileNumber: signUpCtrl.number.text,
+                                sex: signUpCtrl.gender.text,
+                                emergencyConatct: signUpCtrl.emgnum.text,
+                                review: 0.0,
+                                penalties: 0);
+                            Registration register = Registration(user);
+                            if (register.updateProfileOnFirebase()) {
+                              print("success");
+                            } else {
+                              print("failed");
+                            }
                           },
                           child: Text(
                             "  Sign In",

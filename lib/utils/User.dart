@@ -7,4 +7,7 @@ class UserData {
   String email;
   double review;
   int penalties;
+
+  UserData({this.name, this.age, this.sex, this.mobileNumber,
+      this.emergencyConatct, this.email, this.review, this.penalties});
 }
