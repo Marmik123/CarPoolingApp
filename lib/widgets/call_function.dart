@@ -47,13 +47,12 @@ class _VideoCallState extends State<VideoCall> {
     await AgoraRtcEngine.setParameters(
         '''{\"che.video.lowBitRateStreamParameter\":{\"width\":320,\"height\":180,\"frameRate\":15,\"bitRate\":140}}''');
     await AgoraRtcEngine.joinChannel(null, widget.channelName, null, 0);
-  
   }
 
   /// Add agora sdk instance and initialize
   Future<void> _initAgoraRtcEngine() async {
     await AgoraRtcEngine.create(APP_ID);
-    await AgoraRtcEngine.enableVideo();
+    await AgoraRtcEngine.disableVideo();
   }
 
   /// agora event handlers
@@ -65,7 +64,7 @@ class _VideoCallState extends State<VideoCall> {
       });
     };
 
-    /// Use this function to obtain the uid of the person who joined the channel 
+    /// Use this function to obtain the uid of the person who joined the channel
     AgoraRtcEngine.onJoinChannelSuccess = (
       String channel,
       int uid,
@@ -124,12 +123,9 @@ class _VideoCallState extends State<VideoCall> {
 
   /// Remote video view wrapper
   Widget _videoView(view) {
-    return Container(
-      height: 651.4,
-      child: view
-    );
+    return Container(height: 651.4, child: view);
   }
-  
+
   /// Local video view row wrapper
   Widget _localVideoView(view) {
     return Container(
@@ -147,17 +143,15 @@ class _VideoCallState extends State<VideoCall> {
         return Container(
             child: Column(
           children: <Widget>[_videoView(views[0])],
-          )
-        );
+        ));
       case 2:
         return Container(
             child: Stack(
           children: <Widget>[
             _videoView(views[1]),
             Align(
-              alignment: Alignment(0.95, -0.95),
-              child:_localVideoView(views[0])
-            ),
+                alignment: Alignment(0.95, -0.95),
+                child: _localVideoView(views[0])),
           ],
         ));
       default:
@@ -218,12 +212,12 @@ class _VideoCallState extends State<VideoCall> {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Stack(
-          children: <Widget>[
-            _viewRows(),
-            _panel(),
-          ],
-        ),
-      );
+      child: Stack(
+        children: <Widget>[
+          _viewRows(),
+          _panel(),
+        ],
+      ),
+    );
   }
 }
