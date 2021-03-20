@@ -200,11 +200,10 @@ class SignIn extends StatelessWidget {
                                   ctrl.isLoading.value = true;
                                   otpCtx.registerUser();
                                   Get.back();
-                                  Get.to(OtpVerification());
+                                  Get.to(OtpVerification(),
+                                      curve: Curves.elasticInOut,
+                                      duration: Duration(seconds: 1));
                                 }
-                                Get.to(OtpVerification(),
-                                    curve: Curves.elasticInOut,
-                                    duration: Duration(seconds: 1));
                               },
                               padding: MaterialStateProperty.all(
                                   EdgeInsets.only(

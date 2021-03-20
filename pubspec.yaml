@@ -37,6 +37,8 @@ dependencies:
   firebase_auth: ^0.20.1
   country_picker: ^2.0.1
   pin_code_fields: ^6.0.2
+  geolocator: ^6.2.1
+  google_maps_flutter: ^1.2.0
 
 dev_dependencies:
   flutter_test:

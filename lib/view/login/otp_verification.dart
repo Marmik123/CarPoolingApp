@@ -1,6 +1,7 @@
 import 'package:car_pooling_app/app_colors/app_colors.dart';
 import 'package:car_pooling_app/controller/otp_controller.dart';
 import 'package:car_pooling_app/controller/sign_in_controller.dart';
+import 'package:car_pooling_app/view/login/user_type_screen.dart';
 import 'package:car_pooling_app/widgets/circular_loader.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -116,6 +117,9 @@ class OtpVerification extends StatelessWidget {
                             onPressed: () {
                               if (otpCtrl.formKey.currentState.validate()) {
                                 otpCtrl.verifyPhoneManually();
+                                Get.to(UserType(),
+                                    curve: Curves.elasticInOut,
+                                    duration: Duration(seconds: 1));
                               }
                             },
                             buttonColor: MaterialStateProperty.all(kText),

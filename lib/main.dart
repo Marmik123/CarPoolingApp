@@ -1,4 +1,4 @@
-import 'package:car_pooling_app/view/splash_screen.dart';
+import 'package:car_pooling_app/view/login/user_type_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: UserType(),
       title: 'Flutter Demo',
     );
   }
