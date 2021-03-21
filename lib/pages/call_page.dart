@@ -1,11 +1,15 @@
+import 'package:flutter/material.dart';
 /*
 import 'dart:ui';
 
 import 'package:agora_group_calling/widgets/app_bar.dart';
 import 'package:agora_group_calling/widgets/call_function.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:native_screenshot/native_screenshot.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../widgets/app_bar.dart';
+import '../widgets/call_function.dart';
 
 class CallPage extends StatefulWidget {
   final String userName;
@@ -43,7 +47,7 @@ class _CallPageState extends State<CallPage> {
           Positioned(
             bottom: 10,
             left: 60,
-            child: StatusBar(),
+            child: StatusBar(widget.channelName, widget.userName),
           ),
         ],
       ),

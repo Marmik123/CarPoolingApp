@@ -1,13 +1,21 @@
-/*
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class StatusBar extends StatefulWidget {
+  String channelName;
+  String username;
+
+  StatusBar(this.channelName, this.username);
+
   @override
   _StatusBarState createState() => _StatusBarState();
 }
 
 class _StatusBarState extends State<StatusBar> {
+  final _firestore = FirebaseFirestore.instance;
+  final _auth = FirebaseAuth.instance;
   bool micStatus = false;
 
   @override
@@ -20,42 +28,60 @@ class _StatusBarState extends State<StatusBar> {
         children: <Widget>[
           CircleAvatar(
             backgroundColor: Colors.blue,
-                      child: IconButton(
-              icon: micStatus ? Icon(Icons.mic_off, color: Colors.white,) : Icon(Icons.mic, color: Colors.white) , 
+            child: IconButton(
+              icon: micStatus
+                  ? Icon(
+                      Icons.mic_off,
+                      color: Colors.white,
+                    )
+                  : Icon(Icons.mic, color: Colors.white),
               onPressed: toggleMute,
             ),
           ),
           CircleAvatar(
-            backgroundColor: Colors.red,
-            child: IconButton(
-              icon: Icon(Icons.call_end, color: Colors.white,), 
-              onPressed: disconnectCall,
-            )
-          ),
+              backgroundColor: Colors.red,
+              child: IconButton(
+                icon: Icon(
+                  Icons.call_end,
+                  color: Colors.white,
+                ),
+                onPressed: disconnectCall,
+              )),
           CircleAvatar(
-            backgroundColor: Colors.blue,
-            radius: 20,
-            child: IconButton(
-              icon: Icon(Icons.switch_camera, color: Colors.white,), 
-              onPressed: toggleCamera,
-
-            )
-          ),
+              backgroundColor: Colors.blue,
+              radius: 20,
+              child: IconButton(
+                icon: Icon(
+                  Icons.switch_camera,
+                  color: Colors.white,
+                ),
+                onPressed: toggleCamera,
+              )),
         ],
       ),
-      
     );
   }
-  void toggleMute(){
+
+  void toggleMute() {
     setState(() {
       micStatus = !micStatus;
     });
     AgoraRtcEngine.muteLocalAudioStream(micStatus);
   }
-  void toggleCamera(){
+
+  void toggleCamera() {
     AgoraRtcEngine.switchCamera();
   }
-  void disconnectCall(){
+
+  void disconnectCall() async {
     Navigator.pop(context);
+    await _firestore
+        .collection('servers')
+        .doc(widget.channelName)
+        .collection('CallNotification')
+        .doc(widget.username)
+        .delete();
   }
+}
+
 }*/
