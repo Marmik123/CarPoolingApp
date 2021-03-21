@@ -1,6 +1,3 @@
-import 'package:agora_group_calling/console/user_registration.dart';
-import 'package:agora_group_calling/console/user_registration.dart';
-
 import '../../console/user_registration.dart';
 import '../../utils/User.dart';
 import 'package:car_pooling_app/app_colors/app_colors.dart';

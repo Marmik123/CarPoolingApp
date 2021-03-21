@@ -83,5 +83,3 @@ class _StatusBarState extends State<StatusBar> {
         .delete();
   }
 }
-
-}*/
